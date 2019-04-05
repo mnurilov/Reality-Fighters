@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{ABC68511-C3A7-CFD6-B343-963E9F82F708}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/VictoryPoints.cs">
+    <Files>
+      <File FileName="Assets/Scripts/DestroyGameObject.cs" Line="11" Column="17" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="42" Column="11" />
+      <File FileName="Assets/Scripts/PlayerHit.cs" Line="60" Column="89" />
+      <File FileName="Assets/Scripts/ShakeObject.cs" Line="7" Column="1" />
+      <File FileName="Assets/Scripts/Hadouken.cs" Line="8" Column="21" />
+      <File FileName="Assets/Scripts/HealthBar.cs" Line="13" Column="24" />
+      <File FileName="Assets/Scripts/GameHandler.cs" Line="65" Column="57" />
+      <File FileName="Assets/Scripts/RoundPoint.cs" Line="16" Column="5" />
+      <File FileName="Assets/Scripts/Timer.cs" Line="62" Column="29" />
+      <File FileName="Assets/Scripts/VictoryPoints.cs" Line="12" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
