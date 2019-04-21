@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     public float MaximumHealth;
 
     [SerializeField]
@@ -101,6 +100,9 @@ public class PlayerController : MonoBehaviour
     KeyCode dashKey;
 
     [SerializeField]
+    KeyCode punchKey;
+
+    [SerializeField]
     string horizontalAxis;
 
     [SerializeField]
@@ -123,11 +125,17 @@ public class PlayerController : MonoBehaviour
 
     bool canDash;
 
+    BoxCollider2D myCollider;
+
+    [SerializeField]
+    Color myColliderColor;
+
     // Start is called before the first frame update
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        myCollider = GetComponent<BoxCollider2D>();
         CurrentHealth = MaximumHealth;
     }
 
@@ -364,6 +372,12 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("hit");
         }
 
+        if (Input.GetKeyDown(punchKey) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetTrigger("punch");
+        }
+
         if (isGrounded && jump)
         {
             isGrounded = false;
@@ -408,5 +422,11 @@ public class PlayerController : MonoBehaviour
         healthBar.SetSize(CurrentHealth / MaximumHealth);
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = myColliderColor;
+        //Gizmos.matrix = Matrix4x4.TRS(transform.parent.position, transform.parent.transform.rotation, transform.parent.transform.localScale);
+        Gizmos.DrawCube(myCollider.bounds.center, new Vector3(myCollider.bounds.extents.x * 2, myCollider.bounds.extents.y * 2, myCollider.bounds.extents.z * 2)); // Because size is halfExtents
+        //Gizmos.DrawWireCube(hurtBoxCollider.bounds.center, new Vector3(hurtBoxCollider.bounds.extents.x * 2, hurtBoxCollider.bounds.extents.y * 2, hurtBoxCollider.bounds.extents.z * 2)); // Because size is halfExtents
+    }
 }

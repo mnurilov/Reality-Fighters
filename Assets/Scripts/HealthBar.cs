@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetSize(float sizeNormalized)
     {
-        Debug.Log(sizeNormalized);
+        //Debug.Log(sizeNormalized);
         bar.transform.localScale = new Vector3(sizeNormalized, 1f);
     }
 }

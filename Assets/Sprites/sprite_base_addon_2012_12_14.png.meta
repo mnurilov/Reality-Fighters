@@ -266,16 +266,16 @@ TextureImporter:
     21300522: sprite_base_addon_2012_12_14_261
     21300524: sprite_base_addon_2012_12_14_262
     21300526: sprite_base_addon_2012_12_14_263
-    21300528: sprite_base_addon_2012_12_14_264
-    21300530: sprite_base_addon_2012_12_14_265
-    21300532: sprite_base_addon_2012_12_14_266
-    21300534: sprite_base_addon_2012_12_14_267
-    21300536: sprite_base_addon_2012_12_14_268
-    21300538: sprite_base_addon_2012_12_14_269
-    21300540: sprite_base_addon_2012_12_14_270
-    21300542: sprite_base_addon_2012_12_14_271
-    21300544: sprite_base_addon_2012_12_14_272
-    21300546: sprite_base_addon_2012_12_14_273
+    21300528: Punch_01
+    21300530: Punch_02
+    21300532: Punch_03
+    21300534: Punch_04
+    21300536: Punch_05
+    21300538: Punch_06
+    21300540: Punch_07
+    21300542: Punch_08
+    21300544: Punch_09
+    21300546: Punch_10
     21300548: sprite_base_addon_2012_12_14_274
     21300550: sprite_base_addon_2012_12_14_275
     21300552: sprite_base_addon_2012_12_14_276
@@ -5802,7 +5802,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_264
+      name: Punch_01
       rect:
         serializedVersion: 2
         x: 21
@@ -5822,7 +5822,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_265
+      name: Punch_02
       rect:
         serializedVersion: 2
         x: 85
@@ -5842,7 +5842,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_266
+      name: Punch_03
       rect:
         serializedVersion: 2
         x: 149
@@ -5862,7 +5862,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_267
+      name: Punch_04
       rect:
         serializedVersion: 2
         x: 213
@@ -5882,7 +5882,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_268
+      name: Punch_05
       rect:
         serializedVersion: 2
         x: 275
@@ -5902,10 +5902,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_269
+      name: Punch_06
       rect:
         serializedVersion: 2
-        x: 340
+        x: 341
         y: 394
         width: 24
         height: 28
@@ -5922,7 +5922,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_270
+      name: Punch_07
       rect:
         serializedVersion: 2
         x: 405
@@ -5942,7 +5942,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_271
+      name: Punch_08
       rect:
         serializedVersion: 2
         x: 469
@@ -5962,7 +5962,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_272
+      name: Punch_09
       rect:
         serializedVersion: 2
         x: 534
@@ -5982,7 +5982,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_273
+      name: Punch_10
       rect:
         serializedVersion: 2
         x: 597

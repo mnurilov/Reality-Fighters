@@ -1,5 +1,78 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3337355876515508724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5640949541218524}
+  - component: {fileID: 5262017601448891002}
+  - component: {fileID: 2519019960647892216}
+  m_Layer: 10
+  m_Name: Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5640949541218524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337355876515508724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3772098440823222055}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5262017601448891002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337355876515508724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f012bf3a8136453693f48bda481e549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtBoxCollider: {fileID: 2519019960647892216}
+  colliderStateNotHitColor: {r: 0.44918123, g: 0.9245283, b: 0.5378012, a: 0.32156864}
+  colliderStateHitColor: {r: 0, g: 0.5943396, b: 0.051280677, a: 0.53333336}
+--- !u!61 &2519019960647892216
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337355876515508724}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.7, y: 2.9}
+  m_EdgeRadius: 0
 --- !u!1 &3772098439258669877
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,10 +177,9 @@ GameObject:
   - component: {fileID: 3772098440823222051}
   - component: {fileID: 3772098440823222048}
   - component: {fileID: 3772098440823222049}
-  - component: {fileID: 8702044947025171481}
-  - component: {fileID: 3306611382031885278}
-  m_Layer: 0
-  m_Name: Cat
+  - component: {fileID: 5350966689807182317}
+  m_Layer: 9
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +199,8 @@ Transform:
   - {fileID: 3772098440600169167}
   - {fileID: 3772098439258669876}
   - {fileID: 3772098440014391010}
+  - {fileID: 3924700326345416396}
+  - {fileID: 5640949541218524}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -209,6 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9074c774084af45278422941ae479b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaximumHealth: 0
+  healthBar: {fileID: 0}
   IsGuarding: 0
   Stunned: 0
   basedStunTimer: 0
@@ -228,7 +304,13 @@ MonoBehaviour:
   guardKey: 0
   kickKey: 0
   throwKey: 0
+  hadoukenKey: 0
+  dashKey: 0
+  punchKey: 0
   horizontalAxis: 
+  hadoukenObject: {fileID: 0}
+  dashCloud: {fileID: 0}
+  baseDashTimer: 0
 --- !u!50 &3772098440823222048
 Rigidbody2D:
   serializedVersion: 4
@@ -276,7 +358,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8, y: 2.9}
   m_EdgeRadius: 0
---- !u!114 &8702044947025171481
+--- !u!114 &5350966689807182317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -285,24 +367,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 3772098440823222053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee464573349ee477385dad366ccb81e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a5f3199d540e4c01b2303658de41dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPicture: {fileID: 0}
-  enemyName: 
---- !u!70 &3306611382031885278
-CapsuleCollider2D:
+  damage: 5
+  hitbox: {fileID: 7515289851221240128}
+  Active: 0
+  CanHit: 0
+--- !u!1 &7482981622224960263
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3772098440823222053}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.084777, y: 0}
-  m_Size: {x: 1.087148, y: 2.9}
-  m_Direction: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3924700326345416396}
+  - component: {fileID: 7515289851221240128}
+  m_Layer: 11
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3924700326345416396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7482981622224960263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3772098440823222055}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7515289851221240128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7482981622224960263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f392bfee9c248d4bc714d0d254b30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  halfExtent: {x: 1, y: 1.5, z: 1}
+  offset: {x: 0, y: 0, z: 0}
+  inactiveColor: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0.5019608}
+  collisionOpenColor: {r: 1, g: 0.69353175, b: 0.5990566, a: 0.5019608}
+  collidingColor: {r: 1, g: 0, b: 0, a: 0.5019608}
