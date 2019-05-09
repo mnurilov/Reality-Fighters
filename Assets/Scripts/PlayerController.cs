@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     float basedStunTimer;
-
+    
     [SerializeField]
     GameObject enemy;
 
@@ -234,6 +234,14 @@ public class PlayerController : MonoBehaviour
         {
             dash = true;
         }
+    }
+
+    public void StunPlayer(float time)
+    {
+        stunTimer = 0f;
+        basedStunTimer = time;
+        Stunned = true;
+        anim.SetBool("stunned", true);
     }
 
     bool CheckStun()

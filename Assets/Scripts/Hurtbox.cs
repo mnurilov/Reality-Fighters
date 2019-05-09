@@ -48,10 +48,11 @@ public class Hurtbox : MonoBehaviour
        //MaintainOrientation();
     }
 
-    public void getHitBy(int damage)
+    public void getHitBy(int damage, float stunTime)
     {
         PlayerController playerController = parentObject.GetComponent<PlayerController>();
         playerController.TakeDamage(damage);
+        playerController.StunPlayer(stunTime);
         Debug.Log("I got hit");
         // Do something with the damage and the state
     }

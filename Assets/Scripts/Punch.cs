@@ -8,6 +8,9 @@ public class Punch : MonoBehaviour, IHitboxResponder
     int damage;
 
     [SerializeField]
+    float stunTime;
+
+    [SerializeField]
     Hitbox hitbox;
 
     Hurtbox cacheHurtbox;
@@ -46,7 +49,7 @@ public class Punch : MonoBehaviour, IHitboxResponder
         {
             Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
            //hurtbox.StateHit();
-            hurtbox?.getHitBy(damage);
+            hurtbox?.getHitBy(damage, stunTime);
             CanHit = false;
         }
     }

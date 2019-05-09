@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour, IHitboxResponder
 {
     public int damage;
+    public float stunTime;
     public Hitbox hitbox;
 
     public void attack()
@@ -17,6 +18,6 @@ public class Attack : MonoBehaviour, IHitboxResponder
     {
         Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
         hurtbox.StateHit();
-        hurtbox?.getHitBy(damage);
+        hurtbox?.getHitBy(damage, stunTime);
     }
 }
