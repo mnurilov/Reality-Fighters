@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 3772098440823222048}
   - component: {fileID: 3772098440823222049}
   - component: {fileID: 5350966689807182317}
+  - component: {fileID: 3073141290247544503}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -311,6 +312,7 @@ MonoBehaviour:
   hadoukenObject: {fileID: 0}
   dashCloud: {fileID: 0}
   baseDashTimer: 0
+  myColliderColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &3772098440823222048
 Rigidbody2D:
   serializedVersion: 4
@@ -371,9 +373,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  stunTime: 0
   hitbox: {fileID: 7515289851221240128}
   Active: 0
   CanHit: 0
+--- !u!114 &3073141290247544503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772098440823222053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa9daf347f038e43baa430383f0ec4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7482981622224960263
 GameObject:
   m_ObjectHideFlags: 0

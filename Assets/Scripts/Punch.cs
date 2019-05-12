@@ -1,17 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Punch : MonoBehaviour, IHitboxResponder
 {
-    public AudioClip punch_1;
-
-    public AudioClip punch_2;
-
     AudioSource punch;
-
-    System.Random rand;
 
     [SerializeField]
     int damage;
@@ -29,9 +22,8 @@ public class Punch : MonoBehaviour, IHitboxResponder
     public bool CanHit;
 
     void Start(){
-        punch = GetComponent<AudioSource>();
-        rand = new System.Random();
 
+        punch = GetComponent<AudioSource>();
     }
 
     public void attack()
@@ -62,16 +54,11 @@ public class Punch : MonoBehaviour, IHitboxResponder
     {
         if (CanHit)
         {
-            int rand_punch = rand.Next(0,2);
-
-            punch.clip = (rand_punch == 1) ? punch_1 : punch_2;
-            punch.Play();
-
             Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
            //hurtbox.StateHit();
             hurtbox?.getHitBy(damage, stunTime);
             CanHit = false;
-
+            GetComponent<SoundEffects>().PlaySound("punch");
             
         }
     }

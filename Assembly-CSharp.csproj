@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Punch.cs" />
      <Compile Include="Assets\Scripts\RoundPoint.cs" />
      <Compile Include="Assets\Scripts\ShakeObject.cs" />
+     <Compile Include="Assets\Scripts\SoundEffects.cs" />
      <Compile Include="Assets\Scripts\Test.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\VictoryPoints.cs" />

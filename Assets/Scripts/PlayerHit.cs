@@ -27,6 +27,8 @@ public class PlayerHit : MonoBehaviour
         if (collision.gameObject.name.Equals(enemyName) && !enemyCapsuleCollider.enabled &&
             anim.GetCurrentAnimatorStateInfo(0).IsName("Throw"))
         {
+            Debug.Log("throw");
+
             // Deal damage to enemy
             GameObject.Find(enemyName).GetComponent<PlayerController>().TakeDamage(30f);
 
@@ -44,6 +46,8 @@ public class PlayerHit : MonoBehaviour
         // Guarding
         else if (GameObject.Find(enemyName).GetComponent<PlayerController>().IsGuarding == true)
         {
+            Debug.Log("guard");
+
             if (transform.localScale.x < 0)
             {
                 transform.position = new Vector2(collision.gameObject.transform.position.x + 3, transform.position.y);
@@ -56,6 +60,7 @@ public class PlayerHit : MonoBehaviour
         // Normal Hit
         else if (collision.gameObject.name.Equals(enemyName) && !enemyCapsuleCollider.enabled)
         {
+            Debug.Log("kick");
             // Deal damage to enemy
             GameObject.Find(enemyName).GetComponent<PlayerController>().TakeDamage(10f);
 
