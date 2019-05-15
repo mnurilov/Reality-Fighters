@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    FightingCamera fightingCamera;
+
     private float currentHealth;
 
     public float CurrentHealth
@@ -130,6 +133,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Color myColliderColor;
 
+    bool control;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -137,6 +142,9 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         myCollider = GetComponent<BoxCollider2D>();
         CurrentHealth = MaximumHealth;
+
+        // Make sure the player can move when starting the game
+        control = true;
     }
 
     void Update()
@@ -185,6 +193,11 @@ public class PlayerController : MonoBehaviour
         }
         isGrounded = IsGrounded();
 
+        if (!control)
+        {
+            return;
+        }
+
         if (CheckStun())
         {
             return;
@@ -199,6 +212,16 @@ public class PlayerController : MonoBehaviour
         ResetValues();
 
         healthBar.SetSize(CurrentHealth / MaximumHealth);
+    }
+
+    void ActivateControls()
+    {
+        control = true;
+    }
+
+    void DisableControls()
+    {
+        control = false;
     }
 
     bool IsDead()
@@ -344,7 +367,21 @@ public class PlayerController : MonoBehaviour
         }
         if (isGrounded || airControl)
         {
-           dirX = Input.GetAxisRaw(horizontalAxis) * moveSpeed * Time.deltaTime;
+            if (fightingCamera.MaximumDistance)
+            {
+                if(transform.localScale.x * Input.GetAxisRaw(horizontalAxis) < 0)
+                {
+                    dirX = 0;
+                }
+                else
+                {
+                    dirX = Input.GetAxisRaw(horizontalAxis) * moveSpeed * Time.deltaTime;
+                }
+            }
+            else
+            {
+                dirX = Input.GetAxisRaw(horizontalAxis) * moveSpeed * Time.deltaTime;
+            }
         }
 
         if (dash && isGrounded)
@@ -365,12 +402,17 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
         }
 
-        if (dirX != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("MiddleKick"))
+        
+        if (dirX != 0 /*|| fightingCamera.MaximumDistance)*/ && !anim.GetCurrentAnimatorStateInfo(0).IsName("MiddleKick"))
         {
+            Debug.Log("Dir X: " + dirX);
+            Debug.Log("Fighting Bool: " + fightingCamera.MaximumDistance);
             anim.SetBool("isWalking", true);
         }
         else
         {
+            Debug.Log("Dir X: " + dirX);
+            Debug.Log("Fighting Bool: " + fightingCamera.MaximumDistance);
             anim.SetBool("isWalking", false);
         }
 
