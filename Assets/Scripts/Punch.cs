@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Punch : MonoBehaviour, IHitboxResponder
 {
-    AudioSource punch;
+   AudioSource punch;
 
     [SerializeField]
     int damage;
@@ -14,8 +14,6 @@ public class Punch : MonoBehaviour, IHitboxResponder
 
     [SerializeField]
     Hitbox hitbox;
-
-    Hurtbox cacheHurtbox;
 
     public bool Active;
 
@@ -58,7 +56,7 @@ public class Punch : MonoBehaviour, IHitboxResponder
            //hurtbox.StateHit();
             hurtbox?.getHitBy(damage, stunTime);
             CanHit = false;
-            GetComponent<SoundEffects>().PlaySound("punch");
+            GetComponent<SoundEffects>().PlaySound("hadouken");
             
         }
     }

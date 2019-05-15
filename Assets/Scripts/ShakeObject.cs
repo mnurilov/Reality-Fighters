@@ -6,18 +6,17 @@ public class ShakeObject : MonoBehaviour
 {
     float shakeDuration = 0f;
  
-    [SerializeField]
     float shakeMagnitude;
  
-    [SerializeField]
     float dampingSpeed;
 
     Vector3 initialPosition;
 
+    /*
     void OnEnable()
     {
         initialPosition = transform.localPosition;
-    }
+    }*/
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +39,15 @@ public class ShakeObject : MonoBehaviour
         }
     }
 
-    public void TriggerShake()
+    public void SetShakeAndDamping(float shakeMagnitude, float dampingSpeed)
     {
-        shakeDuration = 2.0f;
+        this.shakeMagnitude = shakeMagnitude;
+        this.dampingSpeed = dampingSpeed;
+    }
+
+    public void TriggerShake(float shakeDuration)
+    {
+        initialPosition = transform.localPosition;
+        this.shakeDuration = shakeDuration;
     }
 }

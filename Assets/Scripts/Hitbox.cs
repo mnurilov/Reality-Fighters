@@ -39,8 +39,8 @@ public class Hitbox : MonoBehaviour
     void Start()
     {
         parent = transform.parent;
-        halfExtent = Vector3.zero;
-        offset = Vector3.zero;
+        //halfExtent = Vector3.zero;
+        //offset = Vector3.zero;
     }
 
     public void setResponder(IHitboxResponder responder)
@@ -55,9 +55,7 @@ public class Hitbox : MonoBehaviour
 
     public void startCheckingCollision()
     {
-        //Debug.Log(state.ToString());
         state = ColliderState.Open;
-        //Debug.Log(state.ToString());
     }
 
     public void stopCheckingCollision()

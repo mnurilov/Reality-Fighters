@@ -41,7 +41,7 @@ public class PlayerHit : MonoBehaviour
                 collision.gameObject.transform.position = new Vector2(collision.gameObject.transform.position.x + 2, transform.position.y);
             }
             enemyAnim.SetTrigger("knocked");
-            GameObject.Find("Main Camera").GetComponent<ShakeObject>().TriggerShake();
+            //GameObject.Find("Main Camera").GetComponent<ShakeObject>().TriggerShake();
         }
         // Guarding
         else if (GameObject.Find(enemyName).GetComponent<PlayerController>().IsGuarding == true)

@@ -346,7 +346,7 @@ public class PlayerController : MonoBehaviour
     {
         if (hadouken && isGrounded)
         {
-            Instantiate(hadoukenObject, new Vector2(transform.position.x + 2f, transform.position.y), Quaternion.identity);
+            anim.SetTrigger("hadouken");
             return;
         }
         if (throwing && isGrounded)
@@ -405,14 +405,10 @@ public class PlayerController : MonoBehaviour
         
         if (dirX != 0 /*|| fightingCamera.MaximumDistance)*/ && !anim.GetCurrentAnimatorStateInfo(0).IsName("MiddleKick"))
         {
-            Debug.Log("Dir X: " + dirX);
-            Debug.Log("Fighting Bool: " + fightingCamera.MaximumDistance);
             anim.SetBool("isWalking", true);
         }
         else
         {
-            Debug.Log("Dir X: " + dirX);
-            Debug.Log("Fighting Bool: " + fightingCamera.MaximumDistance);
             anim.SetBool("isWalking", false);
         }
 
@@ -463,6 +459,21 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void ShootHadouken()
+    {
+        GameObject generatedHadouken;
+        if(transform.localScale.x > 0)
+        {
+            generatedHadouken = Instantiate(hadoukenObject, new Vector2(transform.position.x + 2f, transform.position.y), Quaternion.identity);
+            generatedHadouken.GetComponent<MoveForward>().IsGoingRight = true;
+        }
+        else
+        {
+            generatedHadouken = Instantiate(hadoukenObject, new Vector2(transform.position.x - 2f, transform.position.y), Quaternion.identity);
+            generatedHadouken.GetComponent<MoveForward>().IsGoingRight = false;
+        }
     }
 
     public void TakeDamage(float damageValue)

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Hitbox.cs" />
     <Compile Include="Assets\Scripts\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\IHitboxResponder.cs" />
+    <Compile Include="Assets\Scripts\MoveForward.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerHit.cs" />
     <Compile Include="Assets\Scripts\Punch.cs" />

@@ -2,26 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hadouken : MonoBehaviour
+public class Hadouken : MonoBehaviour, IHitboxResponder
 {
     [SerializeField]
-    float moveSpeed;
+    int damage;
 
-    Rigidbody2D rb;
-    // Start is called before the first frame update
+    [SerializeField]
+    float stunTime;
+
+    [SerializeField]
+    Hitbox hitbox;
+
+    AudioSource audioSource;
+
+    SoundEffects soundEffects;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        Debug.Log("HADOUKEN!");
+        //GetComponent<SoundEffects>().PlaySound("punch");
+        audioSource = GetComponent<AudioSource>();
+        GetComponent<AudioSource>().Play();
+        //soundEffects = GetComponent<SoundEffects>();
     }
 
-    // Update is called once per frame
+    public void attack()
+    {
+        hitbox.setResponder(this);
+        hitbox.startCheckingCollision();
+    }
+
     void Update()
     {
-        rb.velocity = new Vector2(moveSpeed, 0f);
+        attack();
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    public void collisionedWith(Collider2D collider)
     {
-        //GameObject.Find(enemyName).GetComponent<CatController>().Stunned = true;
+        Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
+        hurtbox?.getHitBy(damage, stunTime);
+        GetComponent<SoundEffects>().PlaySound("punch");
+
+        Destroy(gameObject);
     }
 }

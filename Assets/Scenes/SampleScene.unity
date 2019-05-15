@@ -460,18 +460,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &262567455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262567446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa9daf347f038e43baa430383f0ec4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &262751748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -654,6 +642,17 @@ PrefabInstance:
       propertyPath: fightingCamera
       value: 
       objectReference: {fileID: 519420033}
+    - target: {fileID: 3772098440823222051, guid: aa91d532398cb40c59c3de927bee5d1b,
+        type: 3}
+      propertyPath: hadoukenObject
+      value: 
+      objectReference: {fileID: 8024342728981806397, guid: 7dc630502b15b6143b64aaee33fe830d,
+        type: 3}
+    - target: {fileID: 3772098440823222051, guid: aa91d532398cb40c59c3de927bee5d1b,
+        type: 3}
+      propertyPath: hadoukenKey
+      value: 105
+      objectReference: {fileID: 0}
     - target: {fileID: 3772098440823222055, guid: aa91d532398cb40c59c3de927bee5d1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -882,8 +881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87edd29ad80b7408db7fe2347e8b1404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeMagnitude: 0.3
-  dampingSpeed: 10
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1076,13 +1073,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 96871dd7b27a0e644815d5ebbd422463, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.022
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -2493,7 +2490,7 @@ PrefabInstance:
     - target: {fileID: 3772098440823222051, guid: aa91d532398cb40c59c3de927bee5d1b,
         type: 3}
       propertyPath: hadoukenKey
-      value: 0
+      value: 103
       objectReference: {fileID: 0}
     - target: {fileID: 3772098440823222051, guid: aa91d532398cb40c59c3de927bee5d1b,
         type: 3}
@@ -2556,6 +2553,12 @@ PrefabInstance:
       propertyPath: fightingCamera
       value: 
       objectReference: {fileID: 519420033}
+    - target: {fileID: 3772098440823222051, guid: aa91d532398cb40c59c3de927bee5d1b,
+        type: 3}
+      propertyPath: hadoukenObject
+      value: 
+      objectReference: {fileID: 8024342728981806397, guid: 7dc630502b15b6143b64aaee33fe830d,
+        type: 3}
     - target: {fileID: 3772098440823222055, guid: aa91d532398cb40c59c3de927bee5d1b,
         type: 3}
       propertyPath: m_LocalPosition.x
