@@ -34,8 +34,7 @@ public class PlayerController : MonoBehaviour
 
     public float MaximumHealth;
 
-    [SerializeField]
-    HealthBar healthBar;
+    public SimpleHealthBar healthBar;
 
     public bool IsGuarding;
 
@@ -133,7 +132,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Color myColliderColor;
 
-    bool control;
+    public bool control;
 
     // Start is called before the first frame update
     void Start()
@@ -188,7 +187,8 @@ public class PlayerController : MonoBehaviour
     {
         if (IsDead())
         {
-            healthBar.SetSize(CurrentHealth / MaximumHealth);
+            //healthBar.SetSize(CurrentHealth / MaximumHealth);
+            healthBar.UpdateBar(CurrentHealth, MaximumHealth);
             return;
         }
         isGrounded = IsGrounded();
@@ -211,7 +211,8 @@ public class PlayerController : MonoBehaviour
 
         ResetValues();
 
-        healthBar.SetSize(CurrentHealth / MaximumHealth);
+        //healthBar.SetSize(CurrentHealth / MaximumHealth);
+        healthBar.UpdateBar(CurrentHealth, MaximumHealth);
     }
 
     void ActivateControls()
@@ -387,6 +388,7 @@ public class PlayerController : MonoBehaviour
         if (dash && isGrounded)
         {
             Instantiate(dashCloud, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity);
+            anim.SetTrigger("dash");
 
             if (dirX < 0)
             {
@@ -396,6 +398,8 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector2(transform.position.x + dirX + 3, transform.position.y);
             }
+
+            return;
         }
         else
         {
@@ -480,7 +484,8 @@ public class PlayerController : MonoBehaviour
     {
         CurrentHealth -= damageValue;
 
-        healthBar.SetSize(CurrentHealth / MaximumHealth);
+        //healthBar.SetSize(CurrentHealth / MaximumHealth);
+        healthBar.UpdateBar(CurrentHealth, MaximumHealth);
     }
 
     private void OnDrawGizmos()

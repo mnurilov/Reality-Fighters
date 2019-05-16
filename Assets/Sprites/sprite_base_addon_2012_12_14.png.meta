@@ -59,7 +59,7 @@ TextureImporter:
     21300108: sprite_base_addon_2012_12_14_54
     21300110: sprite_base_addon_2012_12_14_55
     21300112: sprite_base_addon_2012_12_14_56
-    21300114: sprite_base_addon_2012_12_14_57
+    21300114: Dash_01
     21300116: sprite_base_addon_2012_12_14_58
     21300118: sprite_base_addon_2012_12_14_59
     21300120: sprite_base_addon_2012_12_14_60
@@ -1662,7 +1662,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_57
+      name: Dash_01
       rect:
         serializedVersion: 2
         x: 212

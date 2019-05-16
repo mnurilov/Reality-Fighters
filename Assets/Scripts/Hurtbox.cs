@@ -50,9 +50,9 @@ public class Hurtbox : MonoBehaviour
 
     public void getHitBy(int damage, float stunTime)
     {
-        PlayerController playerController = parentObject.GetComponent<PlayerController>();
-        playerController.TakeDamage(damage);
-        playerController.StunPlayer(stunTime);
+        MichaelPlayerController michaelPlayerController = parentObject.GetComponent<MichaelPlayerController>();
+        michaelPlayerController.TakeDamage(damage);
+        michaelPlayerController.StunPlayer(stunTime);
         Debug.Log("I got hit");
         // Do something with the damage and the state
     }

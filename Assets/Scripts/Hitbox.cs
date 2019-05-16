@@ -65,7 +65,7 @@ public class Hitbox : MonoBehaviour
 
     public void hitboxUpdate()
     {
-        if (state == ColliderState.Closed) { return; }
+       // if (state == ColliderState.Closed) { return; }
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + offset, halfExtent * 2, transform.rotation.y, layerMask);
 
         for (int i = 0; i < colliders.Length; i++)
@@ -104,31 +104,8 @@ public class Hitbox : MonoBehaviour
 
     void Update()
     {
-        // MaintainOrientation();
-        //Debug.Log(Open.ToString());
-        //Debug.Log("start hixbox update");
-        //CheckState();
-        //Debug.Log(state.ToString());
         orientX();
         hitboxUpdate();
-       /*if (state == ColliderState.Closed)
-        {
-            return; 
-        }
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, halfExtent * 2, transform.rotation.y, layerMask);
-
-        //if (layerMask == LayerMask.GetMask())
-        //Debug.Log("Woooo");
-        //Debug.Log(colliders.Length);
-        if (colliders.Length > 0)
-        {
-            state = ColliderState.Colliding;
-            Debug.Log("We hit something!");
-        }
-        else
-        {
-            state = ColliderState.Open;
-        }*/
     }
 
     void OnDrawGizmos()

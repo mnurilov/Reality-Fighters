@@ -27,6 +27,9 @@ public class SoundEffects : MonoBehaviour
         {
             se = Resources.Load("Sounds/" + sound) as AudioClip;
         }
-        aus.PlayOneShot(se, 1f);
+
+        aus.clip = se;
+        aus.Play();
+        //aus.PlayOneShot(se, 1f);
     }
 }
