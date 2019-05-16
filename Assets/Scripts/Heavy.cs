@@ -57,17 +57,15 @@ public class Heavy : MonoBehaviour, IHitboxResponder
         if (CanHit)
         {
             Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
-
             if (hurtbox.CheckIfGuarding())
             {
-
+                hurtbox?.getHitBy((damage / 5), 0, "parry");
             }
             else
             {
-                hurtbox?.getHitBy(damage, stunTime);
-                CanHit = false;
+                hurtbox?.getHitBy(damage, stunTime, "heavy");
             }
-            ///GetComponent<SoundEffects>().PlaySound("punch");
+            CanHit = false;
         }
     }
 }

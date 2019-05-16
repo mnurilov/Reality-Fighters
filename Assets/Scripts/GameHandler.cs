@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
@@ -23,6 +24,18 @@ public class GameHandler : MonoBehaviour
     RoundPoint player2RoundPoint2;
 
     [SerializeField]
+    Image VictoryMark1;
+
+    [SerializeField]
+    Image VictoryMark2;
+
+    [SerializeField]
+    Image VictoryMark3;
+
+    [SerializeField]
+    Image VictoryMark4;
+
+    [SerializeField]
     VictoryPoints player1VictoryPoints;
 
     [SerializeField]
@@ -32,6 +45,62 @@ public class GameHandler : MonoBehaviour
 
     Timer roundoverTimer;
 
+    float victoryTimer;
+
+    [SerializeField]
+    float baseVictoryTimer;
+
+    bool hasNotDisabled;
+
+    bool timerStarted;
+
+    bool TimerFinished()
+    {
+        if (victoryTimer < baseVictoryTimer && timerStarted)
+        {
+            //DisablePlayers();
+            return false;
+        }
+        else
+        {
+            //victoryTimer = 0f;
+            //ActivatePlayers();
+            return true;
+        }
+    }
+
+    void RunTimer()
+    {
+        if (!timerStarted)
+        {
+            return;
+        }
+        else
+        {
+            victoryTimer += Time.deltaTime;
+        }
+    }
+
+    void DisablePlayers()
+    {
+        player1.DisableControls();
+        player2.DisableControls();
+    }
+
+    void ActivatePlayers()
+    {
+        player1.ActivateControls();
+        player2.ActivateControls();
+    }
+
+    void ResetMarks()
+    {
+        VictoryMark1.enabled = false;
+        VictoryMark2.enabled = false;
+        VictoryMark3.enabled = false;
+        VictoryMark4.enabled = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,33 +108,106 @@ public class GameHandler : MonoBehaviour
         roundoverTimer = gameObject.AddComponent<Timer>();
         roundoverTimer.startingTime = 1f;
         roundoverTimer.PauseTimer();
+        hasNotDisabled = true;
+        timerStarted = false;
+
+        
+        ResetMarks();
         ResetGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(RoundIsFinished())
+        if (!RoundIsFinished())
         {
-            /*roundoverTimer.ResetTimer();
-
-            SlowDownTime(.5f);
-
-            if (!roundoverTimer.TimerFinished())
+            return;
+        }
+        if (RoundIsFinished())
+        {
+            if (timerStarted)
             {
-                return;
+                if (!TimerFinished())
+                {
+                    return;
+                }
+                else
+                {
+                    timerStarted = false;
+                    victoryTimer = 0f;
+
+                    MichaelPlayerController winner = DetermineWinner();
+
+                    winner.anim.SetBool("victory", false);
+                    winner.enemyScript.anim.SetBool("dead", false);
+                    ActivatePlayers();
+
+                    if (winner == null)
+                    {
+                        ResetRound();
+                        return;
+                    }
+
+                    if (RewardPlayer(winner))
+                    {
+                        ResetGame();
+                        return;
+                    }
+                    else
+                    {
+                        ResetRound();
+                        return;
+                    }
+                }
             }
             else
             {
-                roundoverTimer.PauseTimer();
-                roundoverTimer.ResetTimer();
-            }*/
+                timerStarted = true;
+                MichaelPlayerController winner = DetermineWinner();
+
+                winner.anim.SetBool("victory", true);
+                winner.PlaySound("Victory1");
+
+                winner.enemyScript.anim.SetTrigger("death");
+                winner.enemyScript.anim.SetBool("dead", true);
+
+                DisablePlayers();
+            }
+        }
+
+
+
+        /*if (CheckTimer())
+        {
+            return;
+        }
+        if(RoundIsFinished() && hasNotDisabled)
+        {
+            timerStarted = true;
+            hasNotDisabled = false;
+            player1.anim.SetBool("victory", true);
+            player2.anim.SetBool("dead", true);
+        }
+        else if(RoundIsFinished() && !hasNotDisabled)
+        {
+
+        }
+        if(RoundIsFinished())
+        {
+            Debug.Log("Round finished");
+            DisablePlayers();
 
             MichaelPlayerController winner = DetermineWinner();
 
             if(winner == null)
             {
-                ResetRound();
+                DisablePlayers();
+                if (CheckTimer())
+                {
+
+                    ResetRound();
+                    ActivatePlayers();
+                }
                 return;
             }
 
@@ -75,11 +217,22 @@ public class GameHandler : MonoBehaviour
             }
             else
             {
-                ResetRound();
-            }
+                DisablePlayers();
 
-            //SlowDownTime(1f);
-        }
+                if (CheckTimer())
+                {
+                    ResetRound();
+                    ActivatePlayers();
+
+                }
+                return;
+            }
+        }*/
+    }
+
+    void FixedUpdate()
+    {
+        RunTimer();
     }
 
     bool RoundIsFinished()
@@ -98,14 +251,17 @@ public class GameHandler : MonoBehaviour
             if (!player1RoundPoint1.Active && !player1RoundPoint2.Active)
             {
                 player1RoundPoint1.Active = true;
+                VictoryMark2.enabled = true;
             }
             else if (player1RoundPoint1.Active && !player1RoundPoint2.Active)
             {
                 player1RoundPoint2.Active = true;
+                VictoryMark1.enabled = true;
             }
             else if (player1RoundPoint1.Active && player1RoundPoint2.Active)
             {
                 player1VictoryPoints.victoryPoints++;
+                ResetMarks();
                 return true;
             }
         }
@@ -114,14 +270,17 @@ public class GameHandler : MonoBehaviour
             if (!player2RoundPoint1.Active && !player2RoundPoint2.Active)
             {
                 player2RoundPoint1.Active = true;
+                VictoryMark4.enabled = true;
             }
             else if (player2RoundPoint1.Active && !player2RoundPoint2.Active)
             {
                 player2RoundPoint2.Active = true;
+                VictoryMark3.enabled = true;
             }
             else if (player2RoundPoint1.Active && player2RoundPoint2.Active)
             {
                 player2VictoryPoints.victoryPoints++;
+                ResetMarks();
                 return true;
             }
         }

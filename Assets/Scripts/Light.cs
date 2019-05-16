@@ -61,13 +61,14 @@ public class Light : MonoBehaviour, IHitboxResponder
             Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
             if (hurtbox.CheckIfGuarding())
             {
-
+                hurtbox?.getHitBy((damage/5), 0, "parry");
             }
             else
             {
-                hurtbox?.getHitBy(damage, stunTime, "face");
-                CanHit = false;
+                hurtbox?.getHitBy(damage, stunTime, "light");
             }
+            CanHit = false;
+
             //GetComponent<SoundEffects>().PlaySound("punch");
 
         }

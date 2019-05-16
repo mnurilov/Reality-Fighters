@@ -8,6 +8,8 @@ public class Hurtbox : MonoBehaviour
 
     public BoxCollider2D hurtBoxCollider;
 
+    public GameObject spark;
+
     public enum ColliderState
     {
         NotHit,
@@ -50,7 +52,7 @@ public class Hurtbox : MonoBehaviour
 
     public bool CheckIfGuarding()
     {
-        if (parentObject.GetComponent<MichaelPlayerController>().IsGuarding)
+        if (parentObject.GetComponent<MichaelPlayerController>().HoldingGuard())
         {
             return true;
         }
@@ -79,9 +81,24 @@ public class Hurtbox : MonoBehaviour
                 michaelPlayerController.anim.SetBool("dead", true);
             }
         }
+        else if (attack == "throw")
+        {
+            michaelPlayerController.anim.SetTrigger("pushed");
+        }
+        else if (attack == "parry")
+        {
+            if(transform.parent.localScale.x > 0)
+            {
+                Instantiate(spark, new Vector2(transform.position.x + 2.5f, transform.position.y), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(spark, new Vector2(transform.position.x - 2.5f, transform.position.y), Quaternion.identity);
+            }
+            michaelPlayerController.PlaySound("Parry");
+        }
 
         Debug.Log("I got hit");
-        // Do something with the damage and the state
     }
 
     private void OnDrawGizmos()

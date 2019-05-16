@@ -59,14 +59,13 @@ public class Medium : MonoBehaviour, IHitboxResponder
             Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
             if (hurtbox.CheckIfGuarding())
             {
-
+                hurtbox?.getHitBy((damage / 5), 0, "parry");
             }
             else
             {
-                hurtbox?.getHitBy(damage, stunTime);
-                CanHit = false;
+                hurtbox?.getHitBy(damage, stunTime, "medium");
             }
-            //GetComponent<SoundEffects>().PlaySound("punch");
+            CanHit = false;
         }
     }
 }

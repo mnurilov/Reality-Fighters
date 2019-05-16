@@ -48,6 +48,8 @@ public class MichaelPlayerController : MonoBehaviour
     [SerializeField]
     GameObject enemy;
 
+    public MichaelPlayerController enemyScript;
+
     Rigidbody2D myRigidbody;
     
     public Animator anim;
@@ -145,11 +147,24 @@ public class MichaelPlayerController : MonoBehaviour
 
     public bool control;
 
+    AudioSource audioSource;
+
+    public void PlaySound(string sound)
+    {
+        AudioClip audioClip;
+        
+        audioClip = Resources.Load("Sounds/" + sound) as AudioClip;
+
+        audioSource.PlayOneShot(audioClip, 1f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
         //myCollider = GetComponent<BoxCollider2D>();
         CurrentHealth = MaximumHealth;
         dashTimer = 0f;
@@ -202,12 +217,12 @@ public class MichaelPlayerController : MonoBehaviour
         healthBar.UpdateBar(CurrentHealth, MaximumHealth);
     }
 
-    void ActivateControls()
+    public void ActivateControls()
     {
         control = true;
     }
 
-    void DisableControls()
+    public void DisableControls()
     {
         control = false;
     }
@@ -220,6 +235,15 @@ public class MichaelPlayerController : MonoBehaviour
             return true;
         }
         anim.SetBool("dead", false);
+        return false;
+    }
+
+    public bool HoldingGuard()
+    {
+        if (Input.GetKey(guardKey))
+        {
+            return true;
+        }
         return false;
     }
 
@@ -265,7 +289,7 @@ public class MichaelPlayerController : MonoBehaviour
         stunTimer = 0f;
         basedStunTimer = time;
         Stunned = true;
-        anim.SetBool("stunned", true);
+       // anim.SetBool("stunned", true);
     }
 
     bool CheckStun()
@@ -275,7 +299,7 @@ public class MichaelPlayerController : MonoBehaviour
             stunTimer += Time.deltaTime;
             if (anim.GetBool("stunned") == false)
             {
-                anim.SetBool("stunned", true);
+                //anim.SetBool("stunned", true);
             }
 
             return true;
@@ -284,13 +308,13 @@ public class MichaelPlayerController : MonoBehaviour
         {
             stunTimer = 0f;
             Stunned = false;
-            anim.SetBool("stunned", false);
+            //anim.SetBool("stunned", false);
             return false;
         }
         else
         {
             stunTimer = 0f;
-            anim.SetBool("stunned", false);
+           // anim.SetBool("stunned", false);
             return false;
         }
     }
@@ -377,6 +401,7 @@ public class MichaelPlayerController : MonoBehaviour
             anim.SetTrigger("throw");
             return;
         }
+
         if (guard && isGrounded)
         {
             anim.SetBool("guard", true);
@@ -393,7 +418,19 @@ public class MichaelPlayerController : MonoBehaviour
         {
             if (fightingCamera.MaximumDistance)
             {
+                myRigidbody.velocity = new Vector2(0, 0);
+
                 if (transform.localScale.x * Input.GetAxisRaw(horizontalAxis) < 0)
+                {
+                    dirX = 0;
+                    myRigidbody.velocity = new Vector2(0, 0);
+                }
+                else if(myRigidbody.velocity.x > 0 && transform.localScale.x > 0)
+                {
+                    dirX = 0;
+                    myRigidbody.velocity = new Vector2(0, 0);
+                }
+                else if (myRigidbody.velocity.x < 0 && transform.localScale.x < 0)
                 {
                     dirX = 0;
                 }
@@ -410,7 +447,7 @@ public class MichaelPlayerController : MonoBehaviour
 
         if (dash && isGrounded)
         {
-            Instantiate(dashCloud, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity);
+            Instantiate(dashCloud, new Vector2(transform.position.x, transform.position.y - 2f), Quaternion.identity);
 
             if (dirX > 0 && transform.localScale.x > 0)
             {
@@ -435,19 +472,24 @@ public class MichaelPlayerController : MonoBehaviour
 
             return;
         }
-        else
+        else if (dirX != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hadouken"))
         {
             transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
-        }
-
-        if (dirX != 0)
-        {
             anim.SetBool("walk", true);
         }
         else
         {
             anim.SetBool("walk", false);
         }
+
+       /* if (dirX != 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            anim.SetBool("walk", true);
+        }
+        else
+        {
+            anim.SetBool("walk", false);
+        }*/
 
         if (!jump && isGrounded)
         {
@@ -521,6 +563,18 @@ public class MichaelPlayerController : MonoBehaviour
         myRigidbody.AddForce(new Vector2(0, force));
     }
 
+    public void KnockDownForce(float xForce)
+    {
+        if (transform.localScale.x > 0)
+        {
+            myRigidbody.AddForce(new Vector2(-xForce, 1500));
+        }
+        else
+        {
+            myRigidbody.AddForce(new Vector2(xForce, 1500));
+        }
+    }
+
     public void PushBackForce(float force)
     {
         if (transform.localScale.x > 0)
@@ -545,17 +599,7 @@ public class MichaelPlayerController : MonoBehaviour
         }
     }
 
-    public void KnockDownForce(float xForce, float yForce)
-    {
-        if (transform.localScale.x > 0)
-        {
-            myRigidbody.AddForce(new Vector2(-xForce, yForce));
-        }
-        else
-        {
-            myRigidbody.AddForce(new Vector2(xForce, yForce));
-        }
-    }
+    
 
     public void TakeDamage(float damageValue)
     {

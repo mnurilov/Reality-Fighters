@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 4843134087203732493}
   - component: {fileID: 402799901100293219}
   - component: {fileID: 4381283254263309746}
+  - component: {fileID: 6502801793860771354}
   - component: {fileID: 6576124994668363630}
   m_Layer: 9
   m_Name: Michael
@@ -344,6 +345,7 @@ MonoBehaviour:
   Stunned: 0
   basedStunTimer: 0
   enemy: {fileID: 0}
+  anim: {fileID: 0}
   groundPoints:
   - {fileID: 5395737165898026721}
   - {fileID: 7857878882587541697}
@@ -353,7 +355,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   airControl: 0
-  jumpForce: 2000
+  jumpForce: 2500
   moveSpeed: 5
   jumpKey: 0
   guardKey: 0
@@ -368,7 +370,7 @@ MonoBehaviour:
     type: 3}
   dashCloud: {fileID: 4830583741008888613, guid: 0a17fa51ceefd4dea82c5c64d7da6843,
     type: 3}
-  baseDashTimer: 0.6
+  baseDashTimer: 0.45
   myCollider: {fileID: 8512453459515222535}
   myColliderColor: {r: 0.9427508, g: 1, b: 0, a: 0.5882353}
   control: 0
@@ -387,7 +389,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 7
+  m_GravityScale: 12
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -467,6 +469,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 30
   stunTime: 1
+  hitbox: {fileID: 7349998124843945825}
+  Active: 0
+  CanHit: 0
+--- !u!114 &6502801793860771354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6720633296906501769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bdd575d9f8f214383cb93f6fe9f4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  stunTime: 0.5
   hitbox: {fileID: 7349998124843945825}
   Active: 0
   CanHit: 0

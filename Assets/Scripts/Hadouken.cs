@@ -13,21 +13,6 @@ public class Hadouken : MonoBehaviour, IHitboxResponder
     [SerializeField]
     Hitbox hitbox;
 
-    //AudioSource audioSource;
-
-    //SoundEffects soundEffects;
-
-    void Start()
-    {
-        Debug.Log("HADOUKEN!");
-        GetComponent<SoundEffects>().PlaySound("hadouken");
-
-        //GetComponent<SoundEffects>().PlaySound("punch");
-        //audioSource = GetComponent<AudioSource>();
-        //GetComponent<AudioSource>().Play();
-        //soundEffects = GetComponent<SoundEffects>();
-    }
-
     public void attack()
     {
         hitbox.setResponder(this);
@@ -45,13 +30,13 @@ public class Hadouken : MonoBehaviour, IHitboxResponder
 
         if (hurtbox.CheckIfGuarding())
         {
-
+            hurtbox?.getHitBy((damage / 5), 0, "parry");
         }
         else
         {
-            hurtbox?.getHitBy(damage, stunTime);
+            hurtbox?.getHitBy(damage, stunTime, "light");
         }
-        
+
         Destroy(gameObject);
     }
 }

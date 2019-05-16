@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\ShakeObject.cs" />
     <Compile Include="Assets\Scripts\SoundEffects.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
+    <Compile Include="Assets\Scripts\Throw.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\VictoryPoints.cs" />
     <None Include="Assets\AssetStore\Simple Health Bar\README.txt" />
