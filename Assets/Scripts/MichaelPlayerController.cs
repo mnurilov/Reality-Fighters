@@ -49,7 +49,8 @@ public class MichaelPlayerController : MonoBehaviour
     GameObject enemy;
 
     Rigidbody2D myRigidbody;
-    Animator anim;
+    
+    public Animator anim;
 
     [SerializeField]
     Transform[] groundPoints;
@@ -151,6 +152,7 @@ public class MichaelPlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         //myCollider = GetComponent<BoxCollider2D>();
         CurrentHealth = MaximumHealth;
+        dashTimer = 0f;
 
         // Make sure the player can move when starting the game
         control = true;
@@ -254,6 +256,7 @@ public class MichaelPlayerController : MonoBehaviour
         if (Input.GetKeyDown(dashKey) && canDash)
         {
             dash = true;
+            canDash = false;
         }
     }
 
@@ -408,15 +411,26 @@ public class MichaelPlayerController : MonoBehaviour
         if (dash && isGrounded)
         {
             Instantiate(dashCloud, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity);
-            anim.SetTrigger("dash");
 
-            if (dirX < 0)
+            if (dirX > 0 && transform.localScale.x > 0)
             {
-                transform.position = new Vector2(transform.position.x + dirX - 3, transform.position.y);
+                PushForwardForce(700);
+                anim.SetTrigger("forwarddash");
             }
-            else if (dirX > 0)
+            else if (dirX < 0 && transform.localScale.x > 0)
             {
-                transform.position = new Vector2(transform.position.x + dirX + 3, transform.position.y);
+                PushBackForce(700);
+                anim.SetTrigger("backwarddash");
+            }
+            else if (dirX > 0 && transform.localScale.x < 0)
+            {
+                PushBackForce(700);
+                anim.SetTrigger("backwarddash");
+            }
+            else if (dirX < 0 && transform.localScale.x < 0)
+            {
+                PushForwardForce(700);
+                anim.SetTrigger("forwarddash");
             }
 
             return;
@@ -492,12 +506,55 @@ public class MichaelPlayerController : MonoBehaviour
 
     public void MediumForce(float force)
     {
-        myRigidbody.AddForce(new Vector2(force, 0));
+        if (transform.localScale.x > 0)
+        {
+            myRigidbody.AddForce(new Vector2(force, 0));
+        }
+        else
+        {
+            myRigidbody.AddForce(new Vector2(-force, 0));
+        }
     }
 
     public void ShoryukenForce(float force)
     {
         myRigidbody.AddForce(new Vector2(0, force));
+    }
+
+    public void PushBackForce(float force)
+    {
+        if (transform.localScale.x > 0)
+        {
+            myRigidbody.AddForce(new Vector2(-force, 0));
+        }
+        else
+        {
+            myRigidbody.AddForce(new Vector2(force, 0));
+        }
+    }
+
+    public void PushForwardForce(float force)
+    {
+        if (transform.localScale.x > 0)
+        {
+            myRigidbody.AddForce(new Vector2(force, 0));
+        }
+        else
+        {
+            myRigidbody.AddForce(new Vector2(-force, 0));
+        }
+    }
+
+    public void KnockDownForce(float xForce, float yForce)
+    {
+        if (transform.localScale.x > 0)
+        {
+            myRigidbody.AddForce(new Vector2(-xForce, yForce));
+        }
+        else
+        {
+            myRigidbody.AddForce(new Vector2(xForce, yForce));
+        }
     }
 
     public void TakeDamage(float damageValue)

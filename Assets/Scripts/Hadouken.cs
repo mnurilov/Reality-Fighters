@@ -42,8 +42,16 @@ public class Hadouken : MonoBehaviour, IHitboxResponder
     public void collisionedWith(Collider2D collider)
     {
         Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
-        hurtbox?.getHitBy(damage, stunTime);
 
+        if (hurtbox.CheckIfGuarding())
+        {
+
+        }
+        else
+        {
+            hurtbox?.getHitBy(damage, stunTime);
+        }
+        
         Destroy(gameObject);
     }
 }

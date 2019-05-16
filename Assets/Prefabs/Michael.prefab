@@ -353,7 +353,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   airControl: 0
-  jumpForce: 1200
+  jumpForce: 2000
   moveSpeed: 5
   jumpKey: 0
   guardKey: 0
@@ -366,8 +366,9 @@ MonoBehaviour:
   horizontalAxis: 
   hadoukenObject: {fileID: 8024342728981806397, guid: 7dc630502b15b6143b64aaee33fe830d,
     type: 3}
-  dashCloud: {fileID: 0}
-  baseDashTimer: 0
+  dashCloud: {fileID: 4830583741008888613, guid: 0a17fa51ceefd4dea82c5c64d7da6843,
+    type: 3}
+  baseDashTimer: 0.6
   myCollider: {fileID: 8512453459515222535}
   myColliderColor: {r: 0.9427508, g: 1, b: 0, a: 0.5882353}
   control: 0
@@ -425,12 +426,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6720633296906501769}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d3112d06056c974fb0fc48aa345a144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 5
   stunTime: 0.4
   hitbox: {fileID: 7349998124843945825}
   Active: 0
@@ -459,7 +460,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6720633296906501769}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12cab9ac799b3fe429404efe72d6ac65, type: 3}
   m_Name: 
@@ -476,7 +477,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6720633296906501769}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}

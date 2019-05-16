@@ -48,11 +48,38 @@ public class Hurtbox : MonoBehaviour
        //MaintainOrientation();
     }
 
-    public void getHitBy(int damage, float stunTime)
+    public bool CheckIfGuarding()
+    {
+        if (parentObject.GetComponent<MichaelPlayerController>().IsGuarding)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void getHitBy(int damage, float stunTime, string attack = "")
     {
         MichaelPlayerController michaelPlayerController = parentObject.GetComponent<MichaelPlayerController>();
         michaelPlayerController.TakeDamage(damage);
         michaelPlayerController.StunPlayer(stunTime);
+
+        if (attack == "light")
+        {
+            michaelPlayerController.anim.SetTrigger("facehit");
+        }
+        else if (attack == "medium")
+        {
+            michaelPlayerController.anim.SetTrigger("bodyhit");
+        }
+        else if (attack == "heavy")
+        {
+            michaelPlayerController.anim.SetTrigger("knockdown");
+            if(michaelPlayerController.CurrentHealth <= 0)
+            {
+                michaelPlayerController.anim.SetBool("dead", true);
+            }
+        }
+
         Debug.Log("I got hit");
         // Do something with the damage and the state
     }

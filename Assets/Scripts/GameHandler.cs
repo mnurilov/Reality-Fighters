@@ -5,10 +5,10 @@ using UnityEngine;
 public class GameHandler : MonoBehaviour
 {
     [SerializeField]
-    PlayerController player1;
+    MichaelPlayerController player1;
 
     [SerializeField]
-    PlayerController player2;
+    MichaelPlayerController player2;
 
     [SerializeField]
     RoundPoint player1RoundPoint1;
@@ -61,7 +61,7 @@ public class GameHandler : MonoBehaviour
                 roundoverTimer.ResetTimer();
             }*/
 
-            PlayerController winner = DetermineWinner();
+            MichaelPlayerController winner = DetermineWinner();
 
             if(winner == null)
             {
@@ -91,7 +91,7 @@ public class GameHandler : MonoBehaviour
         return false;
     }
 
-    bool RewardPlayer(PlayerController player)
+    bool RewardPlayer(MichaelPlayerController player)
     {
         if(player == player1)
         {
@@ -128,7 +128,7 @@ public class GameHandler : MonoBehaviour
         return false;
     }
 
-    PlayerController DetermineWinner()
+    MichaelPlayerController DetermineWinner()
     {
         if (player1.CurrentHealth > player2.CurrentHealth)
         {
@@ -144,8 +144,8 @@ public class GameHandler : MonoBehaviour
     void ResetRound()
     {
         // Reset locations of players
-        player1.transform.position = new Vector3(-5f, 0.3f);
-        player2.transform.position = new Vector3(5f, 0.3f);
+        player1.transform.position = new Vector3(-5f, 2f);
+        player2.transform.position = new Vector3(5f, 2f);
 
         // Reset health bars
         player1.CurrentHealth = player1.MaximumHealth;
