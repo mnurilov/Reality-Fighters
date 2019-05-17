@@ -892,6 +892,12 @@ PrefabInstance:
       propertyPath: stunTime
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 7037835175102018324, guid: 4610e6326f493ac4cb86bb18fc5511f1,
+        type: 3}
+      propertyPath: spark
+      value: 
+      objectReference: {fileID: 2830688469726992537, guid: 228ce70f937123f4f9c8b844e3c133ae,
+        type: 3}
     - target: {fileID: 7310181144391496532, guid: 4610e6326f493ac4cb86bb18fc5511f1,
         type: 3}
       propertyPath: m_Color.r
@@ -907,12 +913,6 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.19624424
       objectReference: {fileID: 0}
-    - target: {fileID: 7037835175102018324, guid: 4610e6326f493ac4cb86bb18fc5511f1,
-        type: 3}
-      propertyPath: spark
-      value: 
-      objectReference: {fileID: 2830688469726992537, guid: 228ce70f937123f4f9c8b844e3c133ae,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4610e6326f493ac4cb86bb18fc5511f1, type: 3}
 --- !u!1001 &337838149
@@ -1613,7 +1613,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 96871dd7b27a0e644815d5ebbd422463, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.022
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1829,7 +1829,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 22c337786db60b6408e3eb857889af89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3450,6 +3450,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: check-mark-1292787__340 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6272596603319288906, guid: 544fb6e015bab7b4ca67477822751a1d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7585182053892179250, guid: 544fb6e015bab7b4ca67477822751a1d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3504,11 +3509,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6272596603319288906, guid: 544fb6e015bab7b4ca67477822751a1d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 544fb6e015bab7b4ca67477822751a1d, type: 3}
