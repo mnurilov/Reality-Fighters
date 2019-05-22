@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtBoxCollider: {fileID: 4447851631273852107}
+  spark: {fileID: 0}
   colliderStateNotHitColor: {r: 0.44918123, g: 0.9245283, b: 0.5378012, a: 0.32156864}
   colliderStateHitColor: {r: 0, g: 0.5943396, b: 0.051280677, a: 0.53333336}
 --- !u!61 &4447851631273852107
@@ -345,6 +346,7 @@ MonoBehaviour:
   Stunned: 0
   basedStunTimer: 0
   enemy: {fileID: 0}
+  enemyScript: {fileID: 0}
   anim: {fileID: 0}
   groundPoints:
   - {fileID: 5395737165898026721}
@@ -356,7 +358,7 @@ MonoBehaviour:
     m_Bits: 256
   airControl: 0
   jumpForce: 2500
-  moveSpeed: 5
+  moveSpeed: 6
   jumpKey: 0
   guardKey: 0
   lightKey: 0

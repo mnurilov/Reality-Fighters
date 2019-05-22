@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &714540376712381983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5670949128999024327}
+  - component: {fileID: 616506304593954631}
+  - component: {fileID: 7163548816709579029}
+  m_Layer: 10
+  m_Name: Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5670949128999024327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714540376712381983}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.735159, y: 6.7123284, z: 0}
+  m_LocalScale: {x: 2.283105, y: 2.283105, z: 2.283105}
+  m_Children: []
+  m_Father: {fileID: 8024342728981806370}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &616506304593954631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714540376712381983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f012bf3a8136453693f48bda481e549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtBoxCollider: {fileID: 7163548816709579029}
+  spark: {fileID: 2830688469726992537, guid: 228ce70f937123f4f9c8b844e3c133ae, type: 3}
+  colliderStateNotHitColor: {r: 0.44918123, g: 0.9245283, b: 0.5378012, a: 0.32156864}
+  colliderStateHitColor: {r: 0, g: 0.5943396, b: 0.051280677, a: 0.53333336}
+--- !u!61 &7163548816709579029
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714540376712381983}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 5.1315894, y: -2.9785101}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.3363123, y: 1.8873754}
+  m_EdgeRadius: 0
 --- !u!1 &8024342727836232003
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,6 +158,7 @@ Transform:
   m_LocalScale: {x: 0.438, y: 0.438, z: 0.438}
   m_Children:
   - {fileID: 8024342727836232002}
+  - {fileID: 5670949128999024327}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

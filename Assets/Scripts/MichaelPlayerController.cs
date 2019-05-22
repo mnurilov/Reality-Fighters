@@ -253,31 +253,31 @@ public class MichaelPlayerController : MonoBehaviour
         {
             jump = true;
         }
-        if (Input.GetKey(guardKey))
+        else if (Input.GetKey(guardKey))
         {
             guard = true;
         }
-        if (Input.GetKeyDown(lightKey))
+        else if (Input.GetKeyDown(lightKey))
         {
             light = true;
         }
-        if (Input.GetKeyDown(mediumKey))
+        else if (Input.GetKeyDown(mediumKey))
         {
             medium = true;
         }
-        if (Input.GetKeyDown(heavyKey))
+        else if (Input.GetKeyDown(heavyKey))
         {
             heavy = true;
         }
-        if (Input.GetKeyDown(hadoukenKey))
+        else if (Input.GetKeyDown(hadoukenKey))
         {
             hadouken = true;
         }
-        if (Input.GetKeyDown(throwKey))
+        else if (Input.GetKeyDown(throwKey))
         {
             throwing = true;
         }
-        if (Input.GetKeyDown(dashKey) && canDash)
+        else if (Input.GetKeyDown(dashKey) && canDash)
         {
             dash = true;
             canDash = false;
@@ -376,27 +376,27 @@ public class MichaelPlayerController : MonoBehaviour
             anim.SetBool("jump", true);
             return;
         }
-        if (light && isGrounded)
+        if (light && isGrounded && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             anim.SetTrigger("light");
             return;
         }
-        if (medium && isGrounded)
+        if (medium && isGrounded && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             anim.SetTrigger("medium");
             return;
         }
-        if (heavy && isGrounded)
+        if (heavy && isGrounded && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             anim.SetTrigger("heavy");
             return;
         }
-        if (hadouken && isGrounded)
+        if (hadouken && isGrounded && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             anim.SetTrigger("hadouken");
             return;
         }
-        if (throwing && isGrounded)
+        if (throwing && isGrounded && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             anim.SetTrigger("throw");
             return;

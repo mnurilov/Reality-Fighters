@@ -13,6 +13,22 @@ public class Hadouken : MonoBehaviour, IHitboxResponder
     [SerializeField]
     Hitbox hitbox;
 
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlaySound(string sound)
+    {
+        AudioClip audioClip;
+
+        audioClip = Resources.Load("Sounds/" + sound) as AudioClip;
+
+        audioSource.PlayOneShot(audioClip, 1f);
+    }
+
     public void attack()
     {
         hitbox.setResponder(this);
@@ -28,6 +44,13 @@ public class Hadouken : MonoBehaviour, IHitboxResponder
     {
         Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
 
+        if (hurtbox.GetComponentInParent<Hadouken>() != null)
+        {
+            Destroy(hurtbox.gameObject.transform.parent.gameObject);
+            Destroy(gameObject);
+            PlaySound("Parry");
+            return;
+        }
         if (hurtbox.CheckIfGuarding())
         {
             hurtbox?.getHitBy((damage / 5), 0, "parry");
